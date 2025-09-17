@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: 🚀 Deploy
 
 on:
   # Trigger the workflow every time you push to the `main` branch
@@ -16,6 +16,7 @@ permissions:
 
 jobs:
   build:
+    name: 🧱 Build Astro
     runs-on: ubuntu-latest
     steps:
       - name: Checkout your repository using git
@@ -30,6 +31,7 @@ jobs:
         # PUBLIC_POKEAPI: 'https://pokeapi.co/api/v2' # Use single quotation marks for the variable value. (optional)
 
   deploy:
+    name: 🚀 Deploy to GitHub Pages
     needs: build
     runs-on: ubuntu-latest
     environment:
