@@ -6,10 +6,25 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "format": "prettier --write  \"**/*.{js,jsx,ts,tsx,md,mdx,svelte,astro}\"",
+    "lint": "eslint --fix \"src/**/*.{js,ts,jsx,tsx,svelte,astro}\""
   },
   "dependencies": {
-    "astro": "^5.13.7"
+    "@tailwindcss/typography": "^0.5.16",
+    "@tailwindcss/vite": "^4.1.13",
+    "astro": "^5.13.7",
+    "astro-expressive-code": "^0.41.3",
+    "astro-icon": "^1.1.5",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^3.3.1",
+    "tailwindcss": "^4.1.13"
   },
-  "packageManager": "pnpm@10.16.1+sha512.0e155aa2629db8672b49e8475da6226aa4bdea85fdcdfdc15350874946d4f3c91faaf64cbdc4a5d1ab8002f473d5c3fcedcd197989cf0390f9badd3c04678706"
+  "packageManager": "pnpm@10.16.1+sha512.0e155aa2629db8672b49e8475da6226aa4bdea85fdcdfdc15350874946d4f3c91faaf64cbdc4a5d1ab8002f473d5c3fcedcd197989cf0390f9badd3c04678706",
+  "devDependencies": {
+    "prettier": "^3.6.2",
+    "prettier-config-standard": "^7.0.0",
+    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-tailwindcss": "^0.6.14"
+  }
 }

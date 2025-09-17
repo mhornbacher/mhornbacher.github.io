@@ -1,16 +1,247 @@
 ---
+import PageLayout from '../layouts/Layout.astro'
 
+import Section from '../components/ui/Section.astro'
+import Card from '../components/ui/Card.astro'
+import ProjectCard from '../components/ui/ProjectCard.astro'
+import Label from '../components/ui/Label.astro'
+import SkillLayout from '../components/ui/SkillLayout.astro'
+import PostPreview from '@/components/posts/PostPreview.astro'
+
+const languages = ['python', 'javascript', 'typescript', 'php', 'c#', 'go', 'ruby', 'sql', 'html', 'css']
+const frontend = ['react', 'vue', 'astro', 'svelte', 'next.js', 'tailwindcss', 'bootstrap', 'material ui']
+const backend = [
+  'asp.net',
+  'node.js',
+  'express',
+  'django',
+  'flask',
+  'gin',
+  'ruby on rails',
+  'postgres',
+  'mysql',
+  'sqlserver',
+  'cassandra'
+]
+const infrastructure = ['aws', 'azure', 'kubernetes', 'docker', 'terraform', 'github actions', 'circleci', 'buildkite']
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<PageLayout meta={{ title: 'Resume' }}>
+  <div class='flex w-full flex-col gap-y-10'>
+    <section class='flex flex-col items-center gap-y-7'>
+      <div class='flex flex-col items-center gap-y-4'>
+        <h1 class='text-3xl font-bold'>Menachem M. Hornbacher</h1>
+        <div class='flex flex-wrap justify-center gap-x-7 gap-y-3'>
+          <Label title='Lead Software Engineer'>
+            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 640' class='h-5 w-5' slot='icon'
+              ><path
+                fill='currentColor'
+                d='M264 112L376 112C380.4 112 384 115.6 384 120L384 160L256 160L256 120C256 115.6 259.6 112 264 112zM208 120L208 160L128 160C92.7 160 64 188.7 64 224L64 320L576 320L576 224C576 188.7 547.3 160 512 160L432 160L432 120C432 89.1 406.9 64 376 64L264 64C233.1 64 208 89.1 208 120zM576 368L384 368L384 384C384 401.7 369.7 416 352 416L288 416C270.3 416 256 401.7 256 384L256 368L64 368L64 480C64 515.3 92.7 544 128 544L512 544C547.3 544 576 515.3 576 480L576 368z'
+              ></path></svg
+            >
+          </Label>
+          <Label title='New York'>
+            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 640' class='h-5 w-5' slot='icon'
+              ><path
+                fill='currentColor'
+                d='M111 431C101.6 440.4 101.6 455.6 111 464.9C120.4 474.2 135.6 474.3 144.9 464.9L163.4 446.4C197.7 474.1 238.3 490.2 279.9 494.7L279.9 528L183.9 528C170.6 528 159.9 538.7 159.9 552C159.9 565.3 170.6 576 183.9 576L423.9 576C437.2 576 447.9 565.3 447.9 552C447.9 538.7 437.2 528 423.9 528L327.9 528L327.9 494.7C377 489.4 424.7 468 462.3 430.4C544 348.7 549.4 219.4 478.4 131.5L497 113C506.4 103.6 506.4 88.4 497 79.1C487.6 69.8 472.4 69.7 463 79L428.5 113.6C419.1 123 419.1 138.2 428.5 147.5C497.2 216.2 497.2 327.7 428.5 396.4C359.8 465.1 248.3 465.1 179.6 396.4C170.2 387 155 387 145.7 396.4L111 431zM304 416C383.5 416 448 351.5 448 272C448 192.5 383.5 128 304 128C224.5 128 160 192.5 160 272C160 351.5 224.5 416 304 416z'
+              ></path></svg
+            >
+          </Label>
+          <Label title='US & EU'>
+            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 640' class='h-5 w-5' slot='icon'
+              ><path
+                fill='currentColor'
+                d='M128 128C128 92.7 156.7 64 192 64L448 64C483.3 64 512 92.7 512 128L512 512C512 547.3 483.3 576 448 576L192 576C156.7 576 128 547.3 128 512L128 128zM224 472C224 485.3 234.7 496 248 496L392 496C405.3 496 416 485.3 416 472C416 458.7 405.3 448 392 448L248 448C234.7 448 224 458.7 224 472zM406.6 272C401.8 298.4 385.1 320.7 362.4 333.2C369.1 316.2 373.6 295.2 375 272L406.6 272zM233.5 272L265.1 272C266.5 295.1 271.1 316.2 277.7 333.2C255 320.7 238.3 298.4 233.5 272zM309.9 327C303.7 313.6 298.8 294.5 297.2 272L343 272C341.4 294.5 336.5 313.6 330.3 327C325.8 336.6 322.1 340.8 320.1 342.5C318.1 340.8 314.4 336.7 309.9 327zM309.9 185C314.4 175.4 318.1 171.2 320.1 169.5C322.1 171.2 325.8 175.3 330.3 185C336.5 198.4 341.4 217.5 343 240L297.2 240C298.8 217.5 303.7 198.4 309.9 185zM406.6 240L375 240C373.6 216.9 369 195.8 362.4 178.8C385.1 191.3 401.8 213.6 406.6 240zM265 240L233.4 240C238.2 213.6 254.9 191.3 277.6 178.8C270.9 195.8 266.4 216.8 265 240zM448 256C448 185.3 390.7 128 320 128C249.3 128 192 185.3 192 256C192 326.7 249.3 384 320 384C390.7 384 448 326.7 448 256z'
+              ></path></svg
+            >
+          </Label>
+        </div>
+      </div>
+    </section>
+
+    <Section title='About'>
+      <p class='text-muted-foreground'>
+        Polyglot engineer with 10+ years building production systems specializing in web technologies and their
+        associated infrastructure. Experienced in PHP, Node.js, .NET, Python, GoLang and React, with extensive
+        experience in AWS, Azure and Kubernetes environments. Advocate and contributor for Open Source, passionate about
+        transparency, analytics, and pragmatic AI/Automation in buisness solutions.
+      </p>
+    </Section>
+    <!-- {
+      allPostsByDate.length > 0 && (
+        <Section title='Posts'>
+          <ul class='flex flex-col gap-y-2'>
+            {allPostsByDate.map((p) => (
+              <li class='flex flex-col gap-x-2 sm:flex-row'>
+                <PostPreview post={p} />
+              </li>
+            ))}
+          </ul>
+        </Section>
+      )
+    } -->
+
+    <Section title='Projects'>
+      <div class='flex flex-col gap-y-3 sm:flex-row sm:gap-x-3 sm:gap-y-0'>
+        <ProjectCard
+          href='https://montessoritools.org/'
+          heading='Montessori Virtual Tools'
+          subheading='A collection of free tools for Montessori educators.'
+          imagePath='/src/assets/montessori-child.png'
+          altText='Child holding a tablet with Montessori tools on the screen'
+          class='w-full sm:w-1/2'
+        />
+        <ProjectCard
+          href='https://github.com/mhornbacher/zoom-to-control4'
+          heading='Zoom to Control 4'
+          subheading='Small persistent TCP server for controlling Control4 from Zoom Rooms.'
+          imagePath='/src/assets/zoom-to-control-4.png'
+          altText='Zoom to Control 4 Logo AI generated image'
+          class='w-full sm:w-1/2'
+        />
+      </div>
+    </Section>
+
+    <Section title='Experience'>
+      <Card
+        heading='Kiddom'
+        subheading='Senior Product Engineer'
+        date='June 2023 - Present'
+        imagePath='/src/assets/kiddom.svg'
+        altText='Kiddom Logo'
+        imageClass='h-12 w-auto md:-left-16'
+      >
+        <p class='text-muted-foreground'>
+          Dipping my toe back into the product-focused world at a fast-paced, mission-driven startup in the EdTech
+          space. In this role I was directly responsible for delivering critical features that secured NYC adoption as
+          well as improving WCAG accessibility across the platform.
+        </p>
+      </Card>
+      <Card
+        heading='Block / AfterPay'
+        subheading='Senior Lead Platform Engineer'
+        date='October 2021 - April 2023'
+        imagePath='/src/assets/block.svg'
+        altText='Block Logo'
+        imageClass='h-12 w-auto md:-left-16 dark:invert'
+      >
+        <p class='text-muted-foreground'>
+          Joined the Block family through the acquisition of AfterPay, leading a team of 5 engineers to build out
+          "CashKite" an in house CI/CD platform infrastructure platform on AWS that mitigated supply-chain attacks that
+          the industry is only now starting to seriously grapple with.
+        </p>
+        <!-- <ul class='text-muted-foreground ml-4 list-disc'>
+          <li>Delivered critical features that secured state-level adoption.</li>
+          <li>Improved accessibility (AA/AAA WCAG) by leading an internal hackathon.</li>
+        </ul> -->
+      </Card>
+      <Card
+        heading='NeonOne'
+        subheading='Senior Product Engineer'
+        date='June 2023 - Present'
+        imagePath='/src/assets/neonone.png'
+        altText='NeonOne Logo'
+        imageClass='h-12 w-auto md:-left-16 dark:invert dark:brightness-0 dark:sepia dark:saturate-100 dark:hue-rotate-180'
+      >
+        <p class='text-muted-foreground'>
+          After a small detour into consulting I joined my friends at Rallybound (now NeonOne) leading a rotating team
+          of 5 engineers building out new features and improving the core fundraising platform .NET framework on Azure.
+        </p>
+        <p class='text-muted-foreground'>
+          Our greatest successes were supporting the NFL's draft day event(s) as well as transitioning our payments to
+          .NET Core without downtime or a single dropped charge to maintain PCI compliance.
+        </p>
+      </Card>
+      <Card
+        heading='Tzivos Hashem'
+        subheading='Devops Engineer'
+        date='September 2017 - December 2018'
+        imagePath='/src/assets/tzivoshashem.png'
+        altText='Tzivos Hashem Logo'
+        imageClass='h-12 w-auto md:-left-16'
+      >
+        <p class='text-muted-foreground'>
+          Transitioned from seasonal work to my first job as the sole software engineer at local non-profit managing all
+          IT and web infrastructure, in addition to developing new features on top of a legacy PHP codebase.
+        </p>
+        <p class='text-muted-foreground'>
+          In this role I am proud to have introduced modern software practices such as CI/CD, Git, and VirtualBox for
+          local development. In addition to introducing React.JS to improve our admin panel performance by multiple
+          orders of magnitude.
+        </p>
+      </Card>
+      <Card
+        heading='Leiders Sukkah'
+        subheading='Webmaster & Wholesale Manager'
+        date='September 2015 - September 2017'
+        imagePath='/src/assets/leiders-sukkah.svg'
+        altText='Leiders Sukkah Logo'
+        imageClass='h-12 w-auto md:-left-16'
+      >
+        <p class='text-muted-foreground'>
+          Started as a seasonal worker during the Sukkot holiday, quickly promoted to webmaster for the 1990s Perl site,
+          all internal IT as well as managing our wholesale accounts around the world.
+        </p>
+      </Card>
+    </Section>
+
+    <!-- <Section title='Education'>
+      <Card
+        heading='Lorem Ipsum'
+        subheading='Sit amet consectetur'
+        date='Dec 2022 - Nov 2023'
+        imagePath='/src/assets/about-astro.png'
+        altText='Lorem, ipsum dolor sit'
+        imageClass='h-12 w-auto md:-left-16'
+      >
+        <ul class='text-muted-foreground ml-4 list-disc'>
+          <li>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore debitis recusandae, ut molestiae laboriosam
+            pariatur!
+
+            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, pariatur!</li>
+          </li>
+        </ul>
+      </Card>
+      <Card
+        heading='Lorem Ipsum'
+        subheading='Sit amet consectetur'
+        date='Dec 2022 - Nov 2023'
+        imagePath='/src/assets/about-astro.png'
+        altText='Lorem, ipsum dolor sit'
+        imageClass='h-12 w-auto md:-left-16'
+      />
+    </Section> -->
+
+    <!-- <Section title='Certifications'>
+      <Card
+        as='a'
+        heading='Lorem ipsum, dolor sit amet consectetur adipisicing.'
+        subheading='Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam dicta magni consequuntur corrupti.'
+        date='Mar 2024 - Mar 2024'
+        imagePath='/src/assets/about-astro.png'
+        altText='Lorem, ipsum dolor sit'
+        imageClass='h-11 w-auto md:-left-16'
+        href='https://www.google.com'
+      />
+      <Card
+        as='a'
+        heading='Lorem ipsum, dolor sit amet'
+        subheading='Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam dicta.'
+        date='Mar 2029 - Mar 2032'
+        imagePath='/src/assets/about-astro.png'
+        altText='Lorem, ipsum dolor sit'
+        imageClass='h-11 w-auto md:-left-16'
+        href='https://www.google.com'
+      />
+    </Section> -->
+
+    <Section title='Skills'>
+      <SkillLayout title='Languages' skills={languages} />
+      <SkillLayout title='Frontend' skills={frontend} />
+      <SkillLayout title='Backend' skills={backend} />
+      <SkillLayout title='infrastructure' skills={infrastructure} />
+    </Section>
+  </div>
+</PageLayout>

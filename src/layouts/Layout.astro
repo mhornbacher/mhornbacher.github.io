@@ -1,0 +1,32 @@
+---
+import '../styles/global.css'
+import type { SiteMeta } from '@/types'
+
+import Head from '@/components/layout/Head.astro'
+import Footer from '@/components/layout/Footer.astro'
+import Header from '@/components/layout/Header.astro'
+
+import { siteConfig } from '@/site-config'
+
+interface Props {
+  meta: SiteMeta
+}
+
+const {
+  meta: { articleDate, description = siteConfig.description, title }
+} = Astro.props
+---
+
+<html lang='en-US'>
+  <Head articleDate={articleDate} description={description} title={title} />
+
+  <body class='bg-background flex justify-center'>
+    <main
+      class='font-satoshi flex min-h-screen w-screen max-w-[60rem] flex-col items-center px-6 pt-7 pb-10 text-[0.92rem] leading-relaxed sm:px-10 lg:px-10'
+    >
+      <Header />
+      <slot />
+      <Footer />
+    </main>
+  </body>
+</html>
